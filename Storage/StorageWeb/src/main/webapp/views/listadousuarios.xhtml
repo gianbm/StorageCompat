@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+	<h:head>
+	<title>Registro de usuario</title>
+	</h:head> 
+
+	<ui:composition template="../commons/sidebar.xhtml">
+		<ui:define name="content">
+			<link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css" />                                         
+		
+			<h:body> 
+				<h:form id="form" class="flex flex-column justify-content-center align-items-center w-full">
+					<h1>LISTADO DE USUARIOS</h1>	
+					<p:dataTable id="operadores" var="operador" value="#{usuarioView.operadores}">
+			            <f:facet name="header">
+			                Operadores registrados
+			            </f:facet>
+			
+			            <p:column headerText="Nombre">
+			                <h:outputText value="#{operador.usuario.nombre}" />
+			            </p:column>
+			            <p:column headerText="Apellido">
+			                <h:outputText value="#{operador.usuario.apellido}" />
+			            </p:column>
+			            <p:column headerText="Email">
+			                <h:outputText value="#{operador.usuario.email}" />
+			            </p:column>
+			            <p:column headerText="Cargo">
+			                <h:outputText value="#{operador.cargo}" />
+			            </p:column>
+			        </p:dataTable>
+			        
+			        <p:dataTable id="cleintes" var="cliente" value="#{usuarioView.clientes}" class="mt-5">
+			            <f:facet name="header">
+			                Clientes registrados
+			            </f:facet>
+			
+			            <p:column headerText="Nombre">
+			                <h:outputText value="#{cliente.usuario.nombre}" />
+			            </p:column>
+			            <p:column headerText="Apellido">
+			                <h:outputText value="#{cliente.usuario.apellido}" />
+			            </p:column>
+			            <p:column headerText="Email">
+			                <h:outputText value="#{cliente.usuario.email}" />
+			            </p:column>
+			            <p:column headerText="C.I / RUT">
+			                <h:outputText value="#{cliente.documento}" />
+			            </p:column>
+			        </p:dataTable>
+					
+				</h:form>
+			</h:body> 
+		</ui:define>
+	</ui:composition>
+
+</html>

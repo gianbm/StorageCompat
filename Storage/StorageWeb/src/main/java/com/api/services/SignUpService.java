@@ -1,9 +1,11 @@
 package com.api.services;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -13,13 +15,16 @@ import javax.ws.rs.core.Response;
 import com.api.ignore.IgnoreType;
 import com.api.schemas.ClienteDTO;
 import com.api.schemas.OperadorDTO;
+import com.api.schemas.ProductoDTO;
 import com.api.schemas.UsuarioReadDTO;
 import com.beans.ClienteBeanRemote;
 import com.beans.OperadorBeanRemote;
 import com.beans.UsuarioBeanRemote;
 import com.entities.Cliente;
 import com.entities.Operador;
+import com.entities.Producto;
 import com.entities.Usuario;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Path("/signup")
@@ -79,6 +84,34 @@ public class SignUpService {
 		UsuarioReadDTO usuarioRead = om.convertValue(newUser, UsuarioReadDTO.class); 
 		return Response.status(Response.Status.CREATED).entity(usuarioRead).build();
 		
+	}
+	
+	@GET
+	@Path("/operadores")
+	public Response listOperadores() {
+		ObjectMapper om = new ObjectMapper();
+
+		om.addMixIn(Set.class, IgnoreType.class);
+		om.addMixIn(List.class, IgnoreType.class);
+		
+		List<Operador> operadores = operadorBean.selectAll();
+		List<OperadorDTO> operadoresDB = om.convertValue(operadores, new TypeReference<List<OperadorDTO>>(){});
+		
+		return Response.ok(operadoresDB).build();
+	}
+	
+	@GET
+	@Path("/clientes")
+	public Response listClientes() {
+		ObjectMapper om = new ObjectMapper();
+
+		om.addMixIn(Set.class, IgnoreType.class);
+		om.addMixIn(List.class, IgnoreType.class);
+		
+		List<Cliente> clientes = clienteBean.selectAll();
+		List<ClienteDTO> clientesDB = om.convertValue(clientes, new TypeReference<List<ClienteDTO>>(){});
+		
+		return Response.ok(clientesDB).build();
 	}
 	
 }

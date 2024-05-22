@@ -28,8 +28,10 @@ import com.beans.OperadorBeanRemote;
 import com.beans.UsuarioBeanRemote;
 import com.entities.Cliente;
 import com.entities.Operador;
+import com.entities.Producto;
 import com.entities.Usuario;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -43,6 +45,10 @@ public class UsusarioView implements Serializable {
 	private Usuario newUsuario;
 	private Operador newOperador;
 	private Cliente newCliente;
+	
+	private List<Operador> operadores;
+	private List<Cliente> clientes;
+
 
 	@PostConstruct
 	public void init() {
@@ -52,6 +58,14 @@ public class UsusarioView implements Serializable {
 		newCliente = new Cliente();
 		newOperador.setUsuario(newUsuario);
 		newCliente.setUsuario(newUsuario);
+		
+		try {
+			obtenerOperadores();
+			obtenerClientes();
+		} catch (IOException | InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public Usuario getUsuario() {
@@ -124,6 +138,78 @@ public class UsusarioView implements Serializable {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public void obtenerOperadores() throws IOException, InterruptedException {
+	    try {
+	        // Crear la solicitud GET
+	        HttpRequest request = HttpRequest.newBuilder()
+	                .uri(URI.create("http://localhost:8080/StorageWeb/api/v1/signup/operadores"))
+	                .header("Content-Type", "application/json")
+	                .GET()
+	                .build();
+
+	        HttpClient client = HttpClient.newHttpClient();
+	        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+	        int statusCode = response.statusCode();
+	        System.out.println("HTTP Status Code: " + statusCode);
+
+	        if (statusCode == 200) {
+	            String responseBody = response.body();
+	            ObjectMapper objectMapper = new ObjectMapper();
+	            operadores = objectMapper.readValue(responseBody, new TypeReference<List<Operador>>() {});
+	            
+	        } else {
+	            System.out.println("Error: " + statusCode);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+	
+	public void obtenerClientes() throws IOException, InterruptedException {
+	    try {
+	        // Crear la solicitud GET
+	        HttpRequest request = HttpRequest.newBuilder()
+	                .uri(URI.create("http://localhost:8080/StorageWeb/api/v1/signup/clientes"))
+	                .header("Content-Type", "application/json")
+	                .GET()
+	                .build();
+
+	        HttpClient client = HttpClient.newHttpClient();
+	        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+	        int statusCode = response.statusCode();
+	        System.out.println("HTTP Status Code: " + statusCode);
+
+	        if (statusCode == 200) {
+	            String responseBody = response.body();
+	            ObjectMapper objectMapper = new ObjectMapper();
+	            clientes = objectMapper.readValue(responseBody, new TypeReference<List<Cliente>>() {});
+	            
+	        } else {
+	            System.out.println("Error: " + statusCode);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+
+	public List<Operador> getOperadores() {
+		return operadores;
+	}
+
+	public void setOperadores(List<Operador> operadores) {
+		this.operadores = operadores;
+	}
+
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
 	}
 
 }
