@@ -20,10 +20,8 @@ public class Operador implements Serializable {
 	@Column(name="ID_OPERADOR", unique=true, nullable=false, precision=38)
 	private long idOperador;
 
-	//bi-directional many-to-one association to Cargo
-	@ManyToOne
-	@JoinColumn(name="ID_CARGO", nullable=false)
-	private Cargo cargo;
+	@Column(name="CARGO")
+	private String cargo;
 
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
@@ -45,11 +43,11 @@ public class Operador implements Serializable {
 		this.idOperador = idOperador;
 	}
 
-	public Cargo getCargo() {
+	public String getCargo() {
 		return this.cargo;
 	}
 
-	public void setCargo(Cargo cargo) {
+	public void setCargo(String cargo) {
 		this.cargo = cargo;
 	}
 

@@ -27,6 +27,5 @@ public interface CRUDRemote<T, ID> extends Serializable{
 
 	List<T> selectAllBy(Collection<String> names);
 
-	Usuario selectUserBy(String username);
 
 }

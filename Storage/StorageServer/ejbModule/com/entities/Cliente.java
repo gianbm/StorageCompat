@@ -27,9 +27,6 @@ public class Cliente implements Serializable {
 	@Column(length=100)
 	private String documento;
 
-	@Column(nullable=false, precision=1)
-	private BigDecimal preferencial;
-
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
 	@JoinColumn(name="ID_USUARIO")
@@ -58,13 +55,6 @@ public class Cliente implements Serializable {
 		this.documento = documento;
 	}
 
-	public BigDecimal getPreferencial() {
-		return this.preferencial;
-	}
-
-	public void setPreferencial(BigDecimal preferencial) {
-		this.preferencial = preferencial;
-	}
 
 	public Usuario getUsuario() {
 		return this.usuario;

@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class OperadorDTO {
 	
 	private UsuarioCreateDTO usuario;
-	private CargoDTO cargo;
+	private String cargo;
 	
 	public UsuarioCreateDTO getUsuario() {
 		return usuario;
@@ -14,10 +14,10 @@ public class OperadorDTO {
 	public void setUsuario(UsuarioCreateDTO usuario) {
 		this.usuario = usuario;
 	}
-	public CargoDTO getCargo() {
+	public String getCargo() {
 		return cargo;
 	}
-	public void setCargo(CargoDTO cargo) {
+	public void setCargo(String cargo) {
 		this.cargo = cargo;
 	}
 	

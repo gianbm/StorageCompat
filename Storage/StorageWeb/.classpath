@@ -17,5 +17,6 @@
 	<classpathentry kind="lib" path="C:/Users/gianl/Downloads/jackson-annotations-2.17.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/gianl/Downloads/jackson-databind-2.17.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/gianl/Downloads/jackson-core-2.17.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/gianl/Downloads/zjsonpatch-0.4.16.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

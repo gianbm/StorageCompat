@@ -154,12 +154,6 @@ public class CRUDBean<T, ID extends Serializable> implements CRUDRemote<T, ID> {
 		TypedQuery<T> query = em.createQuery(cq);
 		return query.getResultList();
 	}
-
-	@Override
-	public Usuario selectUserBy(String username) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 
 

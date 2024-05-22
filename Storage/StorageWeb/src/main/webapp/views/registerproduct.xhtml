@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+	<h:head>
+	<title>Registro de usuario</title>
+	</h:head> 
+
+	<ui:composition template="../commons/sidebar.xhtml">
+		<ui:define name="content">
+			<link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css" />                                         
+		
+			<h:body> 
+				<h:form id="form" class="flex flex-column justify-content-center align-items-center w-full">
+					<h1>ALTA PRODCUTO</h1>	
+					<div class="card">
+						<div class="flex flex-column">
+						   <p:inputText placeholder="Nombre" class="m-2" value="#{productoView.producto.nombre}"/>
+						   <p:inputNumber placeholder="Precio" class="m-2" value="#{productoView.producto.precio}"/>
+						   <p:inputNumber placeholder="Stock" class="m-2" value="#{productoView.producto.stock}"/>
+						   <p:inputText placeholder="Tipo" class="m-2" value="#{productoView.producto.tipo}"/>
+						   <p:inputText placeholder="Codigo" class="m-2" value="#{productoView.producto.codigo}"/>
+						   <p:fileUpload placeholder="IMG" mode="simple" auto="true"/>
+						   
+						   <div class="flex align-items-center">
+						  
+						   </div>
+						  
+						   <p:commandButton value="Crear producto" class="mt-4" actionListener="#{productoView.crearProducto()}"/>
+
+						</div>
+					
+					</div>
+				</h:form>
+			</h:body> 
+		</ui:define>
+	</ui:composition>
+
+</html>

@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class ClienteDTO {
 	
 	private UsuarioCreateDTO usuario;
-	private BigDecimal preferencial;
 	private String documento;
 	
 	public UsuarioCreateDTO getUsuario() {
@@ -17,12 +16,7 @@ public class ClienteDTO {
 	public void setUsuario(UsuarioCreateDTO usuario) {
 		this.usuario = usuario;
 	}
-	public BigDecimal getPreferencial() {
-		return preferencial;
-	}
-	public void setPreferencial(BigDecimal preferencial) {
-		this.preferencial = preferencial;
-	}
+
 	public String getDocumento() {
 		return documento;
 	}

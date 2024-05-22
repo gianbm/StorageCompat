@@ -4,8 +4,6 @@
 		
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:/STORAGE_DS</jta-data-source>
-		
-		<class>com.entities.Cargo</class>
 		<class>com.entities.Cliente</class>
 		<class>com.entities.Operador</class>
 		<class>com.entities.Orden</class>

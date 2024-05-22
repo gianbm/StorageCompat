@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+	<link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css" />                                         
+	<title>Login</title>
+</h:head> 
+	<h:body> 
+		<h:form class="flex flex-column justify-content-center align-items-center w-full">
+		
+			<p:messages id="messages" autoUpdate="true" class="w-2" />
+			
+			<p:card class="w-4 mt-6">
+				<h4>Inicio de sesión</h4>
+				<p:inputText placeholder="Nombre de usuario" class="m-2" value="#{loginView.login.usuario}"/>
+				<p:password id="toggle" class="m-2" placeholder="Contraseña" value="#{loginView.login.password}" toggleMask="true" redisplay="true"/>
+				
+				 <p:commandButton value="Iniciar sesión" class="mt-4" actionListener="#{loginView.createLogin()}" update="messages"/>
+				
+			</p:card>
+			
+		</h:form>
+	</h:body> 
+</html>

@@ -7,4 +7,6 @@ import com.entities.Usuario;
 @Remote
 public interface UsuarioBeanRemote extends CRUDRemote<Usuario, Long> {
 
+	Usuario selectUserBy(String username);
+
 }

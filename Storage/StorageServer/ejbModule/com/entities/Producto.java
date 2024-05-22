@@ -21,8 +21,8 @@ public class Producto implements Serializable {
 	@Column(name="ID_PRODUCTO", unique=true, nullable=false, precision=38)
 	private long idProducto;
 
-	@Column(precision=38)
-	private BigDecimal codigo;
+	@Column
+	private String codigo;
 
 	@Column(nullable=false, length=100)
 	private String nombre;
@@ -31,10 +31,13 @@ public class Producto implements Serializable {
 	private BigDecimal precio;
 
 	@Column(precision=38)
-	private BigDecimal stock;
+	private int stock;
 
 	@Column(nullable=false, length=50)
 	private String tipo;
+	
+	@Column(length=100)
+	private String img;
 
 	//bi-directional many-to-many association to Orden
 	@ManyToMany(mappedBy="productos")
@@ -51,11 +54,11 @@ public class Producto implements Serializable {
 		this.idProducto = idProducto;
 	}
 
-	public BigDecimal getCodigo() {
+	public String getCodigo() {
 		return this.codigo;
 	}
 
-	public void setCodigo(BigDecimal codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
@@ -75,11 +78,11 @@ public class Producto implements Serializable {
 		this.precio = precio;
 	}
 
-	public BigDecimal getStock() {
+	public int getStock() {
 		return this.stock;
 	}
 
-	public void setStock(BigDecimal stock) {
+	public void setStock(int stock) {
 		this.stock = stock;
 	}
 
@@ -97,6 +100,14 @@ public class Producto implements Serializable {
 
 	public void setOrdenes(List<Orden> ordenes) {
 		this.ordenes = ordenes;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 
 }

@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+	<h:head>
+	<title>Registro de usuario</title>
+	</h:head> 
+
+	<ui:composition template="../commons/sidebar.xhtml">
+		<ui:define name="content">
+			<link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css" />                                         
+		
+			<h:body> 
+				<h:form id="form" class="flex flex-column justify-content-center align-items-center w-full">
+					<h1>ALTA CLIENTE</h1>	
+					<div class="card">
+						<div class="flex flex-column">
+						   <p:inputText placeholder="Nombre" class="m-2" value="#{usuarioView.usuario.nombre}"/>
+						   <p:inputText placeholder="Apellido" class="m-2" value="#{usuarioView.usuario.apellido}"/>
+						   <p:inputText placeholder="Email" class="m-2" value="#{usuarioView.usuario.email}"/>
+						   <p:inputText placeholder="Telefono" class="m-2" value="#{usuarioView.usuario.telefono}"/>
+						   <p:inputText placeholder="Nombre de usuario" class="m-2" value="#{usuarioView.usuario.usuario}"/>
+						   <p:password id="toggle" class="m-2" placeholder="Contraseña" value="#{usuarioView.usuario.contrasenia}" toggleMask="true" redisplay="true"/>
+						   <p:inputText placeholder="C.I / RUT" value="#{usuarioView.cliente.documento}"/>
+						   
+						   <div class="flex align-items-center">
+						  
+						   </div>
+						  
+						   <p:commandButton value="Crear cliente" class="mt-4" actionListener="#{usuarioView.crearCliente()}"/>
+
+						</div>
+					
+					</div>
+				</h:form>
+			</h:body> 
+		</ui:define>
+	</ui:composition>
+
+</html>

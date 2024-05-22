@@ -12,11 +12,13 @@ import javax.ws.rs.core.Response;
 
 import com.api.ignore.IgnoreType;
 import com.api.schemas.ClienteDTO;
+import com.api.schemas.OperadorDTO;
 import com.api.schemas.UsuarioReadDTO;
 import com.beans.ClienteBeanRemote;
 import com.beans.OperadorBeanRemote;
 import com.beans.UsuarioBeanRemote;
 import com.entities.Cliente;
+import com.entities.Operador;
 import com.entities.Usuario;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -33,16 +35,41 @@ public class SignUpService {
 	
 	@EJB 
 	private OperadorBeanRemote operadorBean;
+
 	
 	@POST
 	@Path("/cliente")
 	public Response createUser(ClienteDTO newClienteDTO) {
-		System.out.println(newClienteDTO);
 		ObjectMapper om = new ObjectMapper();
 		Cliente newCliente = om.convertValue(newClienteDTO, Cliente.class);
 		Usuario newUser = newCliente.getUsuario();
+		
 		int exitCode = usuarioBean.create(newUser); 
+		newUser = usuarioBean.selectUserBy(newUser.getUsuario());
+		newCliente.setUsuario(newUser);
 		exitCode = clienteBean.create(newCliente);
+		if(exitCode != 0) {
+			return Response.status(Response.Status.BAD_REQUEST).build();
+		}	
+		newUser = usuarioBean.selectUserBy(newUser.getUsuario());
+		
+		om.addMixIn(Set.class, IgnoreType.class);
+		UsuarioReadDTO usuarioRead = om.convertValue(newUser, UsuarioReadDTO.class); 
+		return Response.status(Response.Status.CREATED).entity(usuarioRead).build();
+		
+	}
+	
+	@POST
+	@Path("/operador")
+	public Response createOp(OperadorDTO newOperadorDTO) {
+		ObjectMapper om = new ObjectMapper();
+		Operador newOp = om.convertValue(newOperadorDTO, Operador.class);
+		Usuario newUser = newOp.getUsuario();
+		
+		int exitCode = usuarioBean.create(newUser);
+		newUser = usuarioBean.selectUserBy(newUser.getUsuario());
+		newOp.setUsuario(newUser);
+		exitCode = operadorBean.create(newOp);
 		if(exitCode != 0) {
 			return Response.status(Response.Status.BAD_REQUEST).build();
 		}
@@ -53,4 +80,5 @@ public class SignUpService {
 		return Response.status(Response.Status.CREATED).entity(usuarioRead).build();
 		
 	}
+	
 }
